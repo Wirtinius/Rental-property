@@ -23,10 +23,10 @@ class PropertyAdmin(admin.ModelAdmin):
     reject_properties.short_description = "Reject selected properties"
     fieldsets = (
         ('Basic Information', {
-            'fields': ('property_type', 'location_pincode', 'location_city', 'location_area', 'landmark', 'owner_or_agent', 'mobile_number', 'summary'),
+            'fields': ('property_name', 'property_type', 'location_pincode', 'location_city', 'location_area', 'landmark', 'owner_or_agent', 'mobile_number', 'summary'),
         }),
         ('Rental Property Details', {
-            'fields': ('rent_per_month', 'deposit', 'available_from', 'owner_name', 'owner_id_document', 'rental_photos'),
+            'fields': ('rent_per_month', 'deposit', 'available_from', 'owner_name', 'owner_id_document'),
             'classes': ('rental',),  # This class will be used to hide/show this fieldset
         }),
         ('Buying/Selling Property Details', {

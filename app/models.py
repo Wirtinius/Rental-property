@@ -25,9 +25,8 @@ class Property(models.Model):
         ('land', 'Land for sale'),
         ('office', 'Office for Sale')
     )
-    from django.db import models
 
-
+    property_name = models.CharField(max_length=30)
     property_type = models.CharField(max_length=10, choices=PROPERTY_TYPES)
     location_pincode = models.CharField(max_length=10)
     location_city = models.CharField(max_length=50)
@@ -45,7 +44,6 @@ class Property(models.Model):
     available_from = models.DateField(blank=True, null=True)
     owner_name = models.CharField(max_length=100, blank=True, null=True)
     owner_id_document = models.FileField(upload_to='owner_documents/', blank=True, null=True)
-    rental_photos = models.ManyToManyField(PropertyPhoto, related_name='rental_photos', blank=True)
 
     # Fields for buying/selling properties
     property_type_buy = models.CharField(max_length=20, choices=BUY_PROPERTY_TYPES, blank=True, null=True)
