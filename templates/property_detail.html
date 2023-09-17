@@ -15,13 +15,11 @@
 
             <h3>Property Details</h3>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Location:</strong> {{ property.location }}</li>
                 <li class="list-group-item"><strong>Property Type:</strong> {{ property.property_type }}</li>
                 <li class="list-group-item"><strong>Pincode:</strong> {{ property.location_pincode }}</li>
                 <li class="list-group-item"><strong>City:</strong> {{ property.location_city }}</li>
                 <li class="list-group-item"><strong>Area:</strong> {{ property.location_area }}</li>
                 <li class="list-group-item"><strong>Landmark:</strong> {{ property.landmark }}</li>
-                <li class="list-group-item"><strong>Owner or Agent:</strong> {% if property.owner_or_agent %} Owner {% else %} Agent {% endif %}</li>
                 <li class="list-group-item"><strong>Mobile Number:</strong> {{ property.mobile_number }}</li>
             </ul>
 
