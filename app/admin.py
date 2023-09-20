@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Property, PropertyPhoto
+from .models import Property, PropertyPhoto, VisitRequest
 
 class PropertyPhotoInline(admin.TabularInline):
     model = PropertyPhoto
@@ -53,3 +53,5 @@ class PropertyAdmin(admin.ModelAdmin):
 
 # admin.site.register(PropertyPhoto)
 admin.site.register(Property, PropertyAdmin)
+admin.site.register(VisitRequest)
+

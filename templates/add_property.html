@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Create Property</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ property_form.property_name.id_for_label }}">Property Name:</label>
+                    {{ property_form.property_name }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.property_type.id_for_label }}">Property Type:</label>
+                    {{ property_form.property_type }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.location_pincode.id_for_label }}">Location Pincode:</label>
+                    {{ property_form.location_pincode }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.location_city.id_for_label }}">Location City:</label>
+                    {{ property_form.location_city }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.location_area.id_for_label }}">Location Area:</label>
+                    {{ property_form.location_area }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ property_form.landmark.id_for_label }}">Landmark:</label>
+                    {{ property_form.landmark }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.owner_or_agent.id_for_label }}">Owner or Agent:</label>
+                    {{ property_form.owner_or_agent }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.photos.id_for_label }}">Photos:</label>
+                    {{ property_form.photos }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.video.id_for_label }}">Video:</label>
+                    {{ property_form.video }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.mobile_number.id_for_label }}">Mobile Number:</label>
+                    {{ property_form.mobile_number }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ property_form.summary.id_for_label }}">Summary:</label>
+                    {{ property_form.summary }}
+                </div>
+            </div>
+        </div>
+        {{ photo_formset.management_form }}
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Property Photos:</h4>
+                {% for form in photo_formset %}
+                    <div class="form-group">
+                        {{ form.as_p }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Property</button>
+    </form>
+</div>
+{% endblock %}

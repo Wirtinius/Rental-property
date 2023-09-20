@@ -1,30 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <h1>{{ property.property_name }}</h1>
-            <div class="row">
-                {% for photo in property.propertyphoto_set.all %}
-                    <div class="col-md-4 mb-4">
-                    <img class="card-img-top" src="{{ photo.image.url}}" alt="Property Photo">
+            <div class="row"  style="width: 500px;">
+                <div class="col-lg-12">
+                    <div class="swiffy-slider">
+                        <ul class="slider-container">
+                            {% for photo in property.propertyphoto_set.all %}
+                                <li><img src="{{ photo.image.url }}" style="max-width: 500px; height: auto;" alt="Property Photo"></li>
+                            {% endfor %}
+                        </ul>
+                        <button type="button" class="slider-nav"></button>
+                        <button type="button" class="slider-nav slider-nav-next"></button>
+                        <div class="slider-indicators">
+                            {% for _ in property.propertyphoto_set.all %}
+                                <button></button>
+                            {% endfor %}
+                        </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
-            <p>{{ property.summary }}</p>
 
             <h3>Property Details</h3>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Property Type:</strong> {{ property.property_type }}</li>
-                <li class="list-group-item"><strong>Pincode:</strong> {{ property.location_pincode }}</li>
-                <li class="list-group-item"><strong>City:</strong> {{ property.location_city }}</li>
                 <li class="list-group-item"><strong>Area:</strong> {{ property.location_area }}</li>
-                <li class="list-group-item"><strong>Landmark:</strong> {{ property.landmark }}</li>
-                <li class="list-group-item"><strong>Mobile Number:</strong> {{ property.mobile_number }}</li>
+                <li class="list-group-item"><strong>City:</strong> {{ property.location_city }}</li>
+                <li class="list-group-item"><strong>Property Type:</strong> {{ property.property_type }}</li>
+                <li class="list-group-item"><strong>Price:</strong> {{ property.rent_per_month|default:"N/A" }}</li>
+                <li class="list-group-item"><strong>Deposit:</strong> {{ property.deposit|default:"N/A" }}</li>
             </ul>
 
             {% if property.property_type == 'rent' %}
-                <h3>Rental Property Details</h3>
+                <h3 class="mt-4">Rental Property Details</h3>
                 <ul class="list-group">
                     <li class="list-group-item"><strong>Rent per Month:</strong> {{ property.rent_per_month }}</li>
                     <li class="list-group-item"><strong>Deposit:</strong> {{ property.deposit }}</li>
@@ -34,35 +44,15 @@
             {% endif %}
 
             {% if property.property_type_buy %}
-                <h3>Buying/Selling Property Details</h3>
+                <h3 class="mt-4">Buying/Selling Property Details</h3>
                 <ul class="list-group">
                     <li class="list-group-item"><strong>Property Type for Sale:</strong> {{ property.property_type_buy }}</li>
                     <li class="list-group-item"><strong>Owner Information:</strong> {{ property.owner_info }}</li>
                 </ul>
             {% endif %}
+                        <a href="{% url 'request_visit' property.id %}" class="btn btn-primary mt-3">Call Now</a>
+
         </div>
-<!--        <div class="col-md-4">-->
-<!--            <div class="card">-->
-<!--                <div class="card-body">-->
-<!--                    <h3>Contact Owner</h3>-->
-<!--                    <form method="POST">-->
-<!--                        {% csrf_token %}-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="name">Your Name</label>-->
-<!--                            <input type="text" class="form-control" id="name" name="name" required>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="email">Your Email</label>-->
-<!--                            <input type="email" class="form-control" id="email" name="email" required>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="message">Message</label>-->
-<!--                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>-->
-<!--                        </div>-->
-<!--                        <button type="submit" class="btn btn-primary">Send Visit Request</button>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
+</div>
 {% endblock %}
